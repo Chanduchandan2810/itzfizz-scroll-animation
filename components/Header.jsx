@@ -1,6 +1,6 @@
 'use client';
 
-export default function Header() {
+export default function Header({ onAction }) {
   return (
     <header id="site-header" className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between pointer-events-auto p-[clamp(0.5rem,1.2vh,1rem)_clamp(1rem,2.5vw,2.5rem)]">
       <div className="flex items-center gap-2.5 sm:gap-3">
@@ -30,7 +30,7 @@ export default function Header() {
       {/* Right link/controls */}
       <div className="flex items-center gap-3">
         <span className="text-[11px] font-mono tracking-widest text-[#141416]/60 uppercase hidden lg:block">Digital Experience</span>
-        <button id="stage-toggle-btn" className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-semibold rounded-full bg-[#141416] text-white hover:bg-[#E65D3F] transition-colors shadow-sm cursor-pointer flex items-center gap-1.5 active:scale-95">
+        <button id="stage-toggle-btn" onClick={onAction} className="px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-semibold rounded-full bg-[#141416] text-white hover:bg-[#E65D3F] transition-colors shadow-sm cursor-pointer flex items-center gap-1.5 active:scale-95">
           <span id="btn-text">Celebrate</span>
           <span className="material-symbols-outlined text-[13px] sm:text-[14px]">arrow_forward</span>
         </button>

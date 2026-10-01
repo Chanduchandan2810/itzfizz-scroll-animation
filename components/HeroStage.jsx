@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { useGSAP } from '@gsap/react';
 
 import Header from './Header';
@@ -12,11 +13,22 @@ import Metrics from './Metrics';
 import Confetti from './Confetti';
 import ScrollProgress from './ScrollProgress';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function HeroStage() {
   const containerRef = useRef(null);
   const pinRef = useRef(null);
+  const stRef = useRef(null);
+
+  const handleToggle = () => {
+    const st = stRef.current;
+    if (!st) return;
+    if (st.progress < 0.95) {
+      gsap.to(window, { scrollTo: st.end, duration: 2.5, ease: 'power3.inOut', overwrite: 'auto' });
+    } else {
+      gsap.to(window, { scrollTo: st.start, duration: 2.5, ease: 'power3.inOut', overwrite: 'auto' });
+    }
+  };
 
   useGSAP(() => {
     // Procedural Calm Idle Life Loop
@@ -160,6 +172,18 @@ export default function HeroStage() {
         stopDancing();
         if (statusBadgeText) statusBadgeText.textContent = 'Interactive Crowd Stage';
       }
+
+      const btnText = document.getElementById('btn-text');
+      const btnIcon = document.querySelector('#stage-toggle-btn .material-symbols-outlined');
+      if (btnText && btnIcon) {
+        if (p >= 0.99) {
+          btnText.textContent = 'Reset';
+          btnIcon.textContent = 'refresh';
+        } else {
+          btnText.textContent = 'Celebrate';
+          btnIcon.textContent = 'arrow_forward';
+        }
+      }
     };
 
     // Master ScrollTimeline Setup
@@ -173,6 +197,8 @@ export default function HeroStage() {
         onUpdate: (self) => updateUI(self.progress)
       }
     });
+
+    stRef.current = tl.scrollTrigger;
 
     tl.to('.group-left', { x: '-=11vw', rotation: -4, duration: 0.35, ease: 'power2.inOut' }, 0.05)
       .to('.group-center-left', { x: '-=16vw', y: '+=1.5vh', rotation: -5, duration: 0.35, ease: 'power2.inOut' }, 0.05)
@@ -209,7 +235,7 @@ export default function HeroStage() {
         <div className="absolute inset-0 pointer-events-none z-0" style={{ background: 'radial-gradient(ellipse 70% 45% at 50% 68%, #EAE4D6 0%, rgba(251,249,245,0) 80%)' }}></div>
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-white/80 rounded-full blur-3xl pointer-events-none z-0"></div>
 
-        <Header />
+        <Header onAction={handleToggle} />
         <Confetti />
         <HeroTypography />
         <Metrics />
