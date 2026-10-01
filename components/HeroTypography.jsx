@@ -14,7 +14,7 @@ export default function HeroTypography() {
         {['W', 'E', 'L', 'C', 'O', 'M', 'E'].map((letter, i) => (
           <span
             key={`welcome-${i}`}
-            className="letter-welcome inline-block font-extrabold text-[#141416] opacity-0 select-none text-[clamp(1.75rem,min(4.8vw,6.5vh),3.75rem)] tracking-[clamp(0.15em,0.4vw,0.35em)] max-h-[800px]:text-[clamp(1.5rem,5vh,2.5rem)] max-h-[800px]:tracking-[0.18em] max-h-[680px]:text-[clamp(1.25rem,4.5vh,2rem)] max-h-[680px]:tracking-[0.15em]"
+            className="letter-welcome inline-block font-extrabold text-[#141416] opacity-0 select-none text-[clamp(1.75rem,min(4.8vw,6.5vh),3.75rem)] max-sm:text-[clamp(1.15rem,6vw,1.5rem)] tracking-[clamp(0.15em,0.4vw,0.35em)] max-h-[800px]:text-[clamp(1.5rem,5vh,2.5rem)] max-h-[800px]:tracking-[0.18em] max-h-[680px]:text-[clamp(1.25rem,4.5vh,2rem)] max-h-[680px]:tracking-[0.15em]"
             style={{ transform: 'translateY(35px) scale(0.85)' }}
           >
             {letter}
@@ -29,7 +29,7 @@ export default function HeroTypography() {
           return (
             <span
               key={`itzfizz-${i}`}
-              className={`letter-itzfizz inline-block font-black opacity-0 select-none text-[clamp(2.5rem,min(8vw,11vh),6.5rem)] tracking-[clamp(0.08em,0.3vw,0.22em)] max-h-[800px]:text-[clamp(2.2rem,8.5vh,4.2rem)] max-h-[800px]:tracking-[0.12em] max-h-[680px]:text-[clamp(1.8rem,7.5vh,3.2rem)] max-h-[680px]:tracking-[0.1em] ${isAccent ? 'text-[#E65D3F]' : 'text-[#141416]'}`}
+              className={`letter-itzfizz inline-block font-black opacity-0 select-none text-[clamp(2.5rem,min(8vw,11vh),6.5rem)] max-sm:text-[clamp(2rem,10vw,2.5rem)] tracking-[clamp(0.08em,0.3vw,0.22em)] max-sm:tracking-[0.05em] max-h-[800px]:text-[clamp(2.2rem,8.5vh,4.2rem)] max-h-[800px]:tracking-[0.12em] max-h-[680px]:text-[clamp(1.8rem,7.5vh,3.2rem)] max-h-[680px]:tracking-[0.1em] ${isAccent ? 'text-[#E65D3F]' : 'text-[#141416]'}`}
               style={{ transform: 'translateY(40px) scale(0.8)' }}
             >
               {letter}
