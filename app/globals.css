@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: var(--font-jakarta), -apple-system, sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Elegant CSS drifting keyframes for floating peripheral particles */
+@keyframes gentleDriftA {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(14px, 22px, 0) rotate(180deg); }
+  100% { transform: translate3d(-10px, 44px, 0) rotate(360deg); }
+}
+
+@keyframes gentleDriftB {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-16px, -20px, 0) rotate(-160deg); }
+  100% { transform: translate3d(12px, -38px, 0) rotate(-360deg); }
+}
+
+@keyframes gentleDriftC {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(0.9); }
+  50% { transform: translate3d(18px, -14px, 0) rotate(140deg) scale(1.1); }
+  100% { transform: translate3d(-14px, 28px, 0) rotate(360deg) scale(0.9); }
+}
+
+.drift-a { animation: gentleDriftA var(--drift-dur, 9s) ease-in-out infinite alternate; }
+.drift-b { animation: gentleDriftB var(--drift-dur, 11s) ease-in-out infinite alternate; }
+.drift-c { animation: gentleDriftC var(--drift-dur, 8s) ease-in-out infinite alternate; }
+
+.character-container svg {
+  height: clamp(80px, min(14vw, 22vh), 180px);
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+}
+
+@media (max-height: 800px) {
+  .character-container svg {
+    height: clamp(70px, 18vh, 130px);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (max-height: 680px) {
+  .character-container svg {
+    height: clamp(60px, 16vh, 105px);
+  }
 }
