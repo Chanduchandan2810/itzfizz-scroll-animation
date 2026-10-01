@@ -165,10 +165,9 @@ export default function HeroStage() {
     // Master ScrollTimeline Setup
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: pinRef.current,
-        pin: true,
+        trigger: containerRef.current,
         start: 'top top',
-        end: '+=400%',
+        end: 'bottom bottom',
         scrub: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => updateUI(self.progress)
@@ -204,8 +203,8 @@ export default function HeroStage() {
   }, { scope: containerRef });
 
   return (
-    <div ref={containerRef} className="w-full relative">
-      <div ref={pinRef} className="w-full h-[100dvh] max-h-[100dvh] overflow-hidden relative bg-[#FBF9F5] flex flex-col justify-between">
+    <div ref={containerRef} className="w-full relative h-[500vh]">
+      <div ref={pinRef} className="w-full h-[100dvh] max-h-[100dvh] overflow-hidden sticky top-0 bg-[#FBF9F5] flex flex-col justify-between">
         <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(to right, rgba(20,20,22,0.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(20,20,22,0.035) 1px, transparent 1px)', backgroundSize: '60px 60px' }}></div>
         <div className="absolute inset-0 pointer-events-none z-0" style={{ background: 'radial-gradient(ellipse 70% 45% at 50% 68%, #EAE4D6 0%, rgba(251,249,245,0) 80%)' }}></div>
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-white/80 rounded-full blur-3xl pointer-events-none z-0"></div>
